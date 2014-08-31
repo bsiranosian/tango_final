@@ -8,6 +8,7 @@ This repository contains all the code, data, figures and results for the alignme
 1. Install [Anaconda](http://continuum.io/downloads) (which includes Python, scipy, numpy, and matplotlib, dependencies you'll want)
 2. [Download](https://github.com/bsiranosian/tango/archive/analysis-only.zip) our scripts—or [download everything](https://github.com/bsiranosian/tango/archive/master.zip) instead.  
 3. Jump to [configuration files](https://github.com/bsiranosian/tango/blob/master/README.md#configuration-files) for instructions on running the scripts.  
+_alternatively, you can install the packages detailed in the section below manually._
 
 ###Detailed installation instructions
 We've published two main scripts to analyze kmer usage in mycobacteriphage genomes. With these you can reconstruct the main results from our poster and presentation: a nexus file of distances between phage that can be used to build a neighbor joining phylogenetic tree and plots of genomic self-similarity in a sliding window that can be used to look for horizontal gene transfer. 
@@ -26,11 +27,13 @@ _comparreTDI.py_ calculates genomic self-similarity in a sliding window across t
 
 _fastaDownloader.py_ is an accessory script used to download all the genomes from phagesdb.org. We've included the database of mycobacteriophage fasta files as of 2014-06-20 in this repo, but you can download them again or keep the folder up to date with this script.
 
+Other scripts contain the tools necessary to do the actual computation in genomes. Until we make this into an installable python module, you have to run the scripts from the _kmer\_analysis_ directory. 
+
 ###configuration files
 The first argument to each script is a comma separated configuration file that contains at least the name and fasta file location for each phage that is going to be  compared. Each phage should be defined on a separate line. The format is as follows: 
 
     name,fasta location,(optional) subset start, (optional) subset end
-For an example configuration file that has the names of the 60 phage used in Graham Hatfull's 2010 comparative phage genomics paper, look at _kmer\_analysis\\examples\\fasta\_map\_Hatfull60.txt_. Note that locations defined in this file are specific to my computer and will have to be changed. Fields 3 and 4 can be used to specify a subset of the seqence to be compared with start and end coordinates (zero indexed). 
+For an example configuration file that has the names of the 60 phage used in Graham Hatfull's 2010 comparative phage genomics paper, look at _kmer\_analysis\\examples\\fasta\_map\_Hatfull60.txt_. Fields 3 and 4 can be used to specify a subset of the seqence to be compared with start and end coordinates (zero indexed). 
 
 ###compareTUD.py
 Your command prompt must be in the _kmer\_analysis_ folder to use this script, as I haven't made it into an installable package yet.
@@ -182,24 +185,3 @@ By default, the script reads in phage names from the file defined in phageData a
                             Change this only if you have a custom file
 
 
-##Directories 
-- *kmer_analysis* has the scripts that users should interact with
-- *data* contains input/output data
-- *src* contains code that is still in development and not ready for release. Lots of ideas and bugs here. Enter if you dare!
-- *figures* contains pretty pictures, most of which are just automated outputs from scripts. 
-- *presentation* contains files for the presentation. Chen has a writeup of his presentation procedure on his [website](http://yeesus.com/tangoSEA/).
-- *writing* contains pretty abstract prose. And paper stuff eventually too.
-
-##Changelog
-
-_2014-06-20_
-Getting ready for the alpha release! Spicing up this readme... organizing files, explaining how people can interact with the two main scripts
-
-_2014-06-16_
-The second coming.  
-
-_2014-06-15—2014-04-18_
-Jeez I have no idea.  Review the commit log.  Actually please don't. 
-
-_2014-04-17_
-Added inital code for TUD calculation and figure generation. Two output files are created from the data in the Hatfull et. al 2010 comparative phage genomics paper. This subset of phages will be used for inital tests of our algorithms. 
